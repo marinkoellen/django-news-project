@@ -52,3 +52,10 @@ a {
 a, p {
     font-family: monospace;
 }
+
+
+.form_control{
+    border-color: blue;
+}
+
+

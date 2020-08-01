@@ -5,7 +5,7 @@ from .models import NewsStory
 class StoryForm(ModelForm):
     class Meta:
         model = NewsStory
-        fields = ['title', 'author','pub_date','content']
+        fields = ['title', 'author','pub_date','image_upload','content']
         widgets = {
             'pub_date': forms.DateInput(
                 format=('%m/%d/%Y'),
@@ -15,4 +15,10 @@ class StoryForm(ModelForm):
                     'type': 'date'
                 }
             )
+            ,
+            "content": forms.Textarea(
+                attrs={'placeholder': 'Please write a riveting for my news paper'
+                },
+            )
+
         }
