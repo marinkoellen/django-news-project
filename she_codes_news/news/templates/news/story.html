@@ -10,7 +10,11 @@
     <h2>{{ story.title }}</h2>
     <h4>{{ story.author }}</h4>
     <div id="story-content">
-        <img src="{% static '/news/images/placeholder-5.jpg' %}">
+        {% if story.image_upload|length > 0 %}
+        <img src="{{ story.image_upload }}">
+            {% else %}
+        <img src="https://picsum.photos/600">
+        {% endif %}
         {{ story.content|linebreaks }}
     </div>
 </div>
