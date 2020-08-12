@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
     background-color: rgb(240, 239, 239);
@@ -16,14 +16,14 @@ img {
 }
 
 h1 {
-    font-family: 'Montserrat Subrayada', sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
     font-size: 4rem;
     margin: 0;
 }
 
 h2 {
-   font-family: 'Montserrat Subrayada', sans-serif; 
+    font-family: 'Roboto', sans-serif;
 }
 
 h3 {
@@ -43,6 +43,8 @@ nav {
     align-items: flex-end;
 }
 
+
+
 a {
     margin: 2px;
     text-decoration: none;
@@ -50,12 +52,126 @@ a {
 }
 
 a, p {
-    font-family: monospace;
+    font-family: 'Roboto', sans-serif;
+}
+
+a :hover {
+    color: salmon;
+}
+
+#form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    max-width: 80%;
+    margin-left: 10px;
+}
+
+.form_entry{
+    border: 4px solid peachpuff;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+
+}
+
+.form_entry:hover {
+    background-color: peachpuff;
+    border: 4px solid peachpuff;
+  }
+
+
+#id_pub_date_0, #id_pub_date_1 {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+}
+
+.container-linking{
+    display: flex;
+    flex-direction: row;
+}
+
+#linkcolour{
+    white-space: nowrap;
+    color: salmon;
+    margin-left: 8px;
+}
+
+#connect-page-p{
+    display: flex;
+    flex-direction: row;
+}
+
+.submitbutton{
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    padding: 5px;
+}
+
+.submitbutton:hover{
+    background-color: peachpuff;
+    transform: scale(1.3);
+
 }
 
 
-.form_control{
-    border-color: blue;
+
+ul li {
+    list-style: none; /* Remove default bullets */
+    font-family: 'Roboto', sans-serif;
+
+  }
+  
+  ul li::before {
+    content: "\2022";  
+    color: peachpuff; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em; 
+  }
+
+
+
+
+.Modern.Australian {
+    color: salmon;
+}
+.American {
+    color: palevioletred;
+}
+.Thai {
+    color: plum;
+}
+.Chinese {
+    color: pink;
+}
+.Japanese {
+    color: peachpuff;
+}
+.Indonesian {
+    color: palevioletred;
+}
+.Middle.Eastern {
+    color: purple;
+}
+.Indian {
+    color: lightpink;
+}
+
+.Italian {
+    color: palegreen;
+}
+.French {
+    color: paleturquoise;
+}
+.American {
+    color: lightseagreen;
 }
 
 

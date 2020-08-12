@@ -8,7 +8,11 @@
 {% block content %}
 <div id="story-wrapper">
     <h2>{{ story.title }}</h2>
-    <h4>{{ story.author }}</h4>
+    <h2 class = "{{story.Restaurant}}">{{ story.Restaurant}}</h2>
+    <h4></h4><a href="{% url 'news:one_author' story.author%}">By {{ story.author }}</a></h4>
+    <h4 class = "{{story.cuisine_type}}">{{ story.cuisine_type}}</h4>
+
+
     <div id="story-content">
         {% if story.image_upload|length > 0 %}
         <img src="{{ story.image_upload }}">

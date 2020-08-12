@@ -2,11 +2,14 @@
 
 {% block content %}
 <h2>Create Account</h2>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Account</button>
-</form>
-
+<div id = "form-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submitbutton"  type="submit">Create Account</button>
+    </form>
+</div>
+<div class="container-linking"> 
+    <p id = "connect-page-p">Already have an account?  Log in <a id="linkcolour" href="{% url 'login' %}">here!</a> </p>
+</div>
 {% endblock %}

@@ -2,8 +2,10 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
 from .forms import StoryForm
+from django.contrib.auth import get_user_model
+from users.models import CustomUser
 
-
+User = CustomUser
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
@@ -32,3 +34,18 @@ class AddStoryView(generic.CreateView):
     def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class OneAuthorView(generic.DetailView):
+    model = User
+    template_name = 'news/one_author.html'
+    slug_field = "username"
+    slug_url_kwarg = "username"
+    
+
+
+# class CategoriesView(generic.DetailView):
+#     model = NewsStory
+#     template_name = 'news/categories.html'
+#     slug_field = "username"
+#     slug_url_kwarg = "username"

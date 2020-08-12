@@ -1,13 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 
+{% block stylesheets %}
+<link rel ='stylesheet' type = "text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="submit">
-    </form>
+    <div id = "form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class = "submitbutton" type="submit" value="submit">
+        </form>
+    </div>
 {% else %}
     <p>Please log in or create an account to create a news story</p>
     <a href="{% url 'login' %}">LOGIN</a>

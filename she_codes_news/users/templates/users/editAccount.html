@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Account Details</h2>
+<div id = "form-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submitbutton"  type="submit">Update Account Details</button>
+    </form>
+<a href="{% url 'password_change' %}">Change password</a>
+</div>
+
+{% endblock %}

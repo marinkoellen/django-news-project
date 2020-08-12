@@ -75,6 +75,7 @@
     flex-grow: 1;
 }
 
+
 #story-content {
     text-align: justify;
 }
@@ -86,3 +87,7 @@
 }
 
 
+.form_create_story form  {
+    display: flex;
+    justify-content: center;
+}

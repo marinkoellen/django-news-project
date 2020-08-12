@@ -1,0 +1,29 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block stylesheets %}
+<link rel ='stylesheet' type = "text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="user-profile">
+        <h2>She Codes Eats User:   {{object}}  </h2>
+        <p>Location: {{object.location}}</p>
+        <p>Favourite Cuisine: {{object.favourite_cuisine}}</p>
+        <p>A bit about {{object}}: {{object.bio}}</p>
+        <p>Number of Reviews to date: {{object.stories.all|length}} </p>
+    </div>
+
+
+    <div id="all-stories">
+        {% if object.stories.all %}
+        <p> All reviews written by {{object}} </p>
+            {% for story in object.stories.all %}
+                {% include "./storyCard.html" with story=story %}
+            {% endfor %}
+        {% else %}
+            <p>{{object}} has not submitted any reviews yet!</p>
+        {% endif %}
+    </div>
+    
+{% endblock %} 
+
