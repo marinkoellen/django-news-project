@@ -40,3 +40,17 @@ class StoryForm(ModelForm):
             )    
         }
 
+
+class StoryFormChangeForm(ModelForm):
+    image_upload = forms.URLField(required=False, help_text='If image path is left blank, a randomly generated image will appear in your article',
+    widget=forms.TextInput(attrs={'class': "form_entry"}))
+
+    class Meta:
+        model = NewsStory
+        fields = ['title','Restaurant', 'pub_date','image_upload','content','cuisine_type']
+
+
+class UserDeleteForm(ModelForm):
+    class Meta:
+        model = NewsStory
+        fields = []   #Form has only submit button.  Empty "fields" list still necessary, though.

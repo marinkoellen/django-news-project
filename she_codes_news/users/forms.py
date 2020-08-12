@@ -15,14 +15,10 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 
-
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ['username','email','bio','location','favourite_cuisine']
-
-        
-
 
 
 

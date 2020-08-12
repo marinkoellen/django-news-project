@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel ='stylesheet' type = "text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated and not user.username == story.author.username %}
+    <div id = "form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Delete User Account</legend>
+                    <p>Are you sure you want to delete your account?  This will permanently delete your
+                       profile and any content you have generated.</p>
+                    {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button type="submit">Delete Story</button>
+            </div>
+        </form>
+        
+    </div>
+{% else %}
+    <p>You are not the author of this review.</p>
+    <a href="{% url 'news:index' %}">Return to homepage</a >
+
+
+    
+{% endif %}
+
+{% endblock %}

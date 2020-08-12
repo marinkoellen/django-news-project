@@ -11,6 +11,12 @@
     <h2 class = "{{story.Restaurant}}">{{ story.Restaurant}}</h2>
     <h4></h4><a href="{% url 'news:one_author' story.author%}">By {{ story.author }}</a></h4>
     <h4 class = "{{story.cuisine_type}}">{{ story.cuisine_type}}</h4>
+    
+    {% if user.is_authenticated and user == story.author %}
+        <a href="{% url 'news:editStory' story.pk %}">Edit Story</a>
+        <a href="{% url 'news:deleteStory' story.pk %}">Delete Story</a>
+
+    {% endif %}
 
 
     <div id="story-content">

@@ -1,7 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import NewsStory
-from .forms import StoryForm
+from .forms import StoryForm,StoryFormChangeForm,UserDeleteForm
 from django.contrib.auth import get_user_model
 from users.models import CustomUser
 
@@ -36,6 +36,15 @@ class AddStoryView(generic.CreateView):
         return super().form_valid(form)
 
 
+class EditStoryView(generic.edit.UpdateView):
+    model = NewsStory
+    form_class =  StoryFormChangeForm
+    context_object_name = 'storyForm'
+    template_name = 'news/editStory.html'
+    success_url = reverse_lazy('news:index')
+
+
+
 class OneAuthorView(generic.DetailView):
     model = User
     template_name = 'news/one_author.html'
@@ -44,8 +53,9 @@ class OneAuthorView(generic.DetailView):
     
 
 
-# class CategoriesView(generic.DetailView):
-#     model = NewsStory
-#     template_name = 'news/categories.html'
-#     slug_field = "username"
-#     slug_url_kwarg = "username"
+class DeleteStoryView(generic.edit.DeleteView):
+    model = NewsStory
+    form_class =  UserDeleteForm
+    context_object_name = 'storyForm'
+    template_name = 'news/deleteStory.html'
+    success_url = reverse_lazy('news:index')

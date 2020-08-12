@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel ='stylesheet' type = "text/css" href="{% static 'news/styles.css' %}">
+{% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated and not user.username == story.author.username %}
+    <div id = "form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class = "submitbutton" type="submit" value="Update Story details">
+        </form>
+    </div>
+{% else %}
+    <p>You are not the author of this review.</p>
+    <a href="{% url 'news:index' %}">Return to homepage</a >
+
+
+    
+{% endif %}
+
+{% endblock %}
