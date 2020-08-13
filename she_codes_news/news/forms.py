@@ -3,6 +3,21 @@ from django.forms import ModelForm, SplitDateTimeField, SplitDateTimeWidget
 from .models import NewsStory
 
 class StoryForm(ModelForm):
+    Cuisine_CHOICES = [
+        ('French', 'French'),
+        ('Italian', 'Italian'),
+        ('Modern Australian', 'Modern Australian'),
+        ('Indonesian', 'Indonesian'),
+        ('Chinese', 'Chinese'),
+        ('Japanese', 'Japanese'),
+        ('Thai', 'Thai'),
+        ('American', 'American'),
+        ('Middle Eastern', 'Middle Eastern'),
+        ('Indian', 'Indian'),
+        ('Moroccan', 'Moroccan'),
+        ('Other', 'Other'),
+    ]
+    
     image_upload = forms.URLField(required=False, help_text='If image path is left blank, a randomly generated image will appear in your article',
     widget=forms.TextInput(attrs={'class': "form_entry"}))
     

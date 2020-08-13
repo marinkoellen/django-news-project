@@ -18,7 +18,30 @@ class IndexView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.all().order_by('-pub_date')[:4]
         context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
+        context['categories'] = NewsStory.cuisine_type.field.choices
         return context
+
+class CategoryFilterView(generic.ListView):
+    template_name = 'news/category_page.html'
+    context_object_name = 'all_stories'
+    slug_field = "cuisine_type"
+    slug_url_kwarg = "cuisine_type"
+
+    def get_queryset(self):
+        '''Return all news stories.'''
+        qs = NewsStory.objects.all()
+        q = self.request.GET.get("cuisine_type")
+        if q:
+            qs =qs.filter(cuisine_type = q)
+        return qs
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['form'] = StoryForm
+            return context
+
+
+
 
 class StoryView(generic.DetailView):
     model = NewsStory
@@ -44,14 +67,12 @@ class EditStoryView(generic.edit.UpdateView):
     success_url = reverse_lazy('news:index')
 
 
-
 class OneAuthorView(generic.DetailView):
     model = User
     template_name = 'news/one_author.html'
     slug_field = "username"
     slug_url_kwarg = "username"
     
-
 
 class DeleteStoryView(generic.edit.DeleteView):
     model = NewsStory

@@ -7,7 +7,7 @@
 {% block content %}
 
 
-{% if user.is_authenticated and not user.username == story.author.username %}
+{% if user.is_authenticated and user == storyForm.author %}
     <div id = "form-container">
         <form action="" method="post">
             {% csrf_token %}

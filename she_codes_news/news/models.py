@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from users.models import CustomUser
 
 
 class NewsStory(models.Model):
@@ -26,7 +27,7 @@ class NewsStory(models.Model):
     CHOICES = [('1','Awful'),('2','Average'),('3','Okay'),('4','Good'),('5','Fantastic')]
     Food_rating = models.CharField(
         max_length=20,
-        choices=Cuisine_CHOICES,
+        choices=CHOICES,
         default=3,
     )
 

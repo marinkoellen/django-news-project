@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/<int:pk>/', views.EditStoryView.as_view(),name='editStory'),
     path('delete/<int:pk>/', views.DeleteStoryView.as_view(),name='deleteStory'),
     path('one_author/<str:username>/', views.OneAuthorView.as_view(), name = 'one_author'),
+    path('filter/', views.CategoryFilterView.as_view(), name = 'filtering-cat'),
 ]

@@ -15,19 +15,7 @@
         <a href="{% url 'login' %}">You must be logged in to write a restaurant review</a>
     {% endif %}
 
-
-    <h2>Latest Reviews</h2>
-
-    <div id="latest-stories">
-        {% if latest_stories %}
-            {% for story in latest_stories %}
-            <!-- looks for template name and sends it story -->
-                {% include "./storyCard.html" with story=story position=forloop.counter %}
-            {% endfor %}
-        {% else %}
-            <p>No stories are available.</p>
-        {% endif %}
-    </div>
+    <h2>{{request.GET.cuisine_type}}</h2>
 
     <div id="all-stories">
         {% if all_stories %}
@@ -35,7 +23,7 @@
                 {% include "./storyCard.html" with story=story %}
             {% endfor %}
         {% else %}
-            <p>No stories are available.</p>
+            <p>No reviews have been posted for {{request.GET.cuisine_type}} restaurants yet. Time to get eating and report back to us at She Codes Eats.</p>
         {% endif %}
     </div>
 {% endblock %}

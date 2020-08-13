@@ -7,21 +7,17 @@
 {% block content %}
 
 
-{% if user.is_authenticated and not user.username == story.author.username %}
+{% if user.is_authenticated and user == storyForm.author %}
     <div id = "form-container">
         <form method="POST">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend>Delete User Account</legend>
-                    <p>Are you sure you want to delete your account?  This will permanently delete your
-                       profile and any content you have generated.</p>
+                <h2>Delete Review: {{storyForm.title}}</h2>
+                    <p>Are you sure you want to delete your review "{{storyForm.title}}" ?  This will permanently delete the review for restaurant: {{storyForm.Restaurant}} which was published on {{storyForm.pub_date}}</p>
                     {{ form.as_p }}
-            </fieldset>
             <div class="form-group">
                 <button type="submit">Delete Story</button>
             </div>
         </form>
-        
     </div>
 {% else %}
     <p>You are not the author of this review.</p>

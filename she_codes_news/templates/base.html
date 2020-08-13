@@ -20,6 +20,13 @@
                     <h1>She {Codes} Eats</h1>
                 </a>
             </div>
+
+                <div class="form-group">
+                    {% for x,y in user.Cuisine_CHOICES %}
+                        <a href="{% url 'news:filtering-cat' %}?cuisine_type={{x}}"> {{x}} </a>
+                    {% endfor %}
+                </div>  
+
             {% include './nav.html' %}
         </header>
 
