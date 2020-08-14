@@ -42,10 +42,10 @@
         {% csrf_token %}
         <button class = "submitbutton" type="submit",name="post_id",value="{{story.id}}">Like - {{story.total_likes}}</button>
     </form>
+    {% endif %}    
     <p>Do you see what other reviews this author has contributed?</p>
     <a class = "navbar" href="{% url 'news:one_author' story.author%}">Profile: {{ story.author }}</a>
 
-    {% endif %}    
 </div>
 
 
