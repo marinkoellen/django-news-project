@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from users.models import CustomUser
+from users.models import CustomUser, Cuisine_CHOICES
+
+
 
 
 class NewsStory(models.Model):
@@ -35,10 +37,14 @@ class NewsStory(models.Model):
     Restaurant = models.CharField(max_length=200)
 
     author = models.ForeignKey(
-        get_user_model(),
+        CustomUser,
         on_delete=models.CASCADE,
         related_name="stories"
     )
     pub_date = models.DateTimeField()
     content = models.TextField()
     image_upload = models.URLField(default="",max_length=500)
+    likes = models.ManyToManyField(CustomUser, related_name = "story")
+
+    def total_likes(self):
+        return self.likes.count()

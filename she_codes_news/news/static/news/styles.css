@@ -78,12 +78,15 @@
 
 #story-content {
     text-align: justify;
+    margin-left: 20px;
+    width: 40%;
+
 }
 
 #story-content img {
     float: right;
-    margin: 0 0 10px 10px;
-    width: 50%;
+    margin: 20px;
+    width: 30%;
 }
 
 
@@ -91,3 +94,7 @@
     display: flex;
     justify-content: center;
 }
+
+
+
+

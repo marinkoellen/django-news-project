@@ -6,7 +6,7 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username','email','bio','location','favourite_cuisine','password']
+        fields = ['username','email','bio','location','favourite_cuisine']
     def save(self, commit=True):
         user = super().save(commit=False)
         if commit:
@@ -22,7 +22,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username','email','bio','location','favourite_cuisine','password']
+        fields = ['username','email','bio','location','favourite_cuisine']
 
 
 

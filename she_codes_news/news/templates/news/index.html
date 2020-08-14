@@ -8,31 +8,19 @@
 {% endblock %}
 
 {% block content %}
-
-    {% if user.is_authenticated %}
-    <a href="{% url 'news:newsStory' %}">Hi {{user.username}}! Write a new restaurant review!</a>
-    {% else %}
-        <a href="{% url 'login' %}">You must be logged in to write a restaurant review</a>
-    {% endif %}
-
+    <div id="welcomesection">
+        <p>Hello! Welcome to She {Codes} Eats! </p>
+        <p>A place for Perth locals to share their experiences dining out across Western Australia. </p>
+        <p>Please share your favourite restaurant dishes, experiences and reccomendations with fellow She {Codes} foodies.</p>
+    </div>
 
     <h2>Latest Reviews</h2>
-
     <div id="latest-stories">
+
         {% if latest_stories %}
             {% for story in latest_stories %}
             <!-- looks for template name and sends it story -->
                 {% include "./storyCard.html" with story=story position=forloop.counter %}
-            {% endfor %}
-        {% else %}
-            <p>No stories are available.</p>
-        {% endif %}
-    </div>
-
-    <div id="all-stories">
-        {% if all_stories %}
-            {% for story in all_stories %}
-                {% include "./storyCard.html" with story=story %}
             {% endfor %}
         {% else %}
             <p>No stories are available.</p>

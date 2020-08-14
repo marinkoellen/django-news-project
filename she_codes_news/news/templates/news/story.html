@@ -7,17 +7,9 @@
 
 {% block content %}
 <div id="story-wrapper">
+<div id="story-heading"> 
     <h2>{{ story.title }}</h2>
-    <h2 class = "{{story.Restaurant}}">{{ story.Restaurant}}</h2>
-    <h4></h4><a href="{% url 'news:one_author' story.author%}">By {{ story.author }}</a></h4>
-    <h4 class = "{{story.cuisine_type}}">{{ story.cuisine_type}}</h4>
-    
-    {% if user.is_authenticated and user == story.author %}
-        <a href="{% url 'news:editStory' story.pk %}">Edit Story</a>
-        <a href="{% url 'news:deleteStory' story.pk %}">Delete Story</a>
-
-    {% endif %}
-
+</div>
 
     <div id="story-content">
         {% if story.image_upload|length > 0 %}
@@ -25,7 +17,37 @@
             {% else %}
         <img src="https://picsum.photos/600">
         {% endif %}
+        <h2>Restaurant: {{story.Restaurant}}</h2>
+        <h2>Rating: {{story.Food_rating}} / 5</h2>
+        <h2 class = "{{story.cuisine_type}}">{{story.cuisine_type}}</h2>
+
         {{ story.content|linebreaks }}
+        <p>{{ story.pub_date }}</p>
+        {% if user.is_authenticated and user == story.author %}
+            <a class = "navbar" href="{% url 'news:editStory' story.pk %}">Edit Story</a>
+            <a class = "navbar" href="{% url 'news:deleteStory' story.pk %}">Delete Story</a>
+        {% endif %}
+
     </div>
 </div>
+
+
+
+<div id = "edit-story-test">
+    {% if user.is_authenticated %}
+    <p></p>
+    <p>Was this review helpful? Give it a like!</p>
+
+    <form action="{% url 'news:like-post' story.pk %}" method="POST">
+        {% csrf_token %}
+        <button class = "submitbutton" type="submit",name="post_id",value="{{story.id}}">Like - {{story.total_likes}}</button>
+    </form>
+    <p>Do you see what other reviews this author has contributed?</p>
+    <a class = "navbar" href="{% url 'news:one_author' story.author%}">Profile: {{ story.author }}</a>
+
+    {% endif %}    
+</div>
+
+
+
 {% endblock %}

@@ -1,14 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-body {
+/* body {
     background-color: rgb(240, 239, 239);
-}
+} */
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #000;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#cuisine-types{
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+#empreview {
+    color: salmon;
 }
 
 img {
@@ -174,4 +190,115 @@ ul li {
     color: lightseagreen;
 }
 
+.Moroccan{
+    color: olivedrab
+}
 
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3px;
+    background-color: salmon;
+    color: white;
+    font-size: 0.7em;    
+    margin-top: 100px;
+    flex-basis: 80%;
+    width: 100%;
+
+}
+
+footer a {
+    font-size: 0.7em;
+    color: white;
+}
+/* 
+
+#buttontest button {
+  background-image: url(static/news/images/heart.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 50px;
+  width: 200px;
+  border: none;
+}
+
+#buttontest button span {
+  display: none;
+} */
+
+
+
+#edit-story-test{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#story-heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.editaccount{
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding-top: 80px;
+}
+
+.deleteedit:hover{
+    color: salmon;
+    transform: scale(1.1);
+
+}
+
+
+
+#welcomesection{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+
+#title-sen{
+    margin-top: 20px;
+}
+
+.navbar{
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar:hover{
+    color: salmon;
+    transform: scale(1.1);
+}
+
+
+
+
+#changepass{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+
+#uppercase-storycard{
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 0.8rem;
+
+}

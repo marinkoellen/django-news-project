@@ -8,14 +8,14 @@
 {% endblock %}
 
 {% block content %}
-
+    <div id="title-sen">
     {% if user.is_authenticated %}
-    <a href="{% url 'news:newsStory' %}">Hi {{user.username}}! Write a new restaurant review!</a>
+    <a href="{% url 'news:newsStory' %}">Been to a great {{request.GET.cuisine_type}} restaurant? Write a new restaurant review and let us know about it here!</a>
     {% else %}
-        <a href="{% url 'login' %}">You must be logged in to write a restaurant review</a>
+        <a href="{% url 'login' %}">Been to a great {{request.GET.cuisine_type}} restaurant? Remember You must be logged in to write a restaurant review</a>
     {% endif %}
-
-    <h2>{{request.GET.cuisine_type}}</h2>
+    </div>
+    <h2>All {{request.GET.cuisine_type}} Reviews</h2>
 
     <div id="all-stories">
         {% if all_stories %}

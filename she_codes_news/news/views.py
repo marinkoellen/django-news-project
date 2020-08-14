@@ -1,11 +1,18 @@
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import NewsStory
 from .forms import StoryForm,StoryFormChangeForm,UserDeleteForm
 from django.contrib.auth import get_user_model
-from users.models import CustomUser
-
+from users.models import CustomUser, Cuisine_CHOICES
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
 User = CustomUser
+
+def LikeView(request, pk):
+    newsstory = get_object_or_404(NewsStory,pk=pk)
+    newsstory.likes.add(request.user)
+    return HttpResponseRedirect(reverse('news:story',args=[str(pk)]))
+
 
 class IndexView(generic.ListView):
     template_name = 'news/index.html'
@@ -17,6 +24,19 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_stories'] = NewsStory.objects.all().order_by('-pub_date')[:4]
+        context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
+        context['categories'] = NewsStory.cuisine_type.field.choices
+        return context
+
+class ALLIndexView(generic.ListView):
+    template_name = 'news/category_page.html'
+
+    def get_queryset(self):
+        '''Return all news stories.'''
+        return NewsStory.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['all_stories'] = NewsStory.objects.all().order_by('-pub_date')
         context['categories'] = NewsStory.cuisine_type.field.choices
         return context
@@ -38,6 +58,7 @@ class CategoryFilterView(generic.ListView):
         def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
             context['form'] = StoryForm
+            context['categories'] = Cuisine_CHOICES
             return context
 
 
@@ -48,6 +69,14 @@ class StoryView(generic.DetailView):
     template_name = 'news/story.html'
     context_object_name = 'story'
 
+    def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            stuff = get_object_or_404(NewsStory, id=self.kwargs['pk'])
+            total_likes = stuff.total_likes()
+            context['total_likes'] = total_likes
+            context['categories'] = NewsStory.cuisine_type.field.choices
+            return context
+
 class AddStoryView(generic.CreateView):
     form_class = StoryForm
     context_object_name = 'storyForm'
@@ -57,6 +86,12 @@ class AddStoryView(generic.CreateView):
     def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = StoryForm.Cuisine_CHOICES
+        return context
+ 
 
 
 class EditStoryView(generic.edit.UpdateView):
@@ -66,6 +101,12 @@ class EditStoryView(generic.edit.UpdateView):
     template_name = 'news/editStory.html'
     success_url = reverse_lazy('news:index')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = NewsStory.cuisine_type.field.choices
+        return context
+
+
 
 class OneAuthorView(generic.DetailView):
     model = User
@@ -73,6 +114,10 @@ class OneAuthorView(generic.DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = User.Cuisine_CHOICES
+        return context    
 
 class DeleteStoryView(generic.edit.DeleteView):
     model = NewsStory
@@ -80,3 +125,8 @@ class DeleteStoryView(generic.edit.DeleteView):
     context_object_name = 'storyForm'
     template_name = 'news/deleteStory.html'
     success_url = reverse_lazy('news:index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = NewsStory.cuisine_type.field.choices
+        return context

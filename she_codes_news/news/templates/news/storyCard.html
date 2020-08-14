@@ -1,15 +1,21 @@
+{% load static %}
+
 <div class="story-card" id="story-card-{{ position }}">
     <a href="{% url 'news:story' story.id %}">
         {% if story.image_upload|length > 0 %}
         <img src="{{ story.image_upload }}">
+
             {% else %}
         <img src="https://picsum.photos/600">
         {% endif %}
+
+
         <div class="story-card-text">
             <h3>{{ story.title }}</h3>
-            <h4>{{ story.author }}</h4>
-            <h4>{{ story.pub_date }}</h4>
-            <h4 class = "{{story.cuisine_type}}" >{{ story.cuisine_type}}</h4>
+            <h4 id = "uppercase-storycard">{{story.author}}</h4> 
+            <h4 id = "uppercase-storycard" class = "{{story.cuisine_type}}" >{{ story.cuisine_type}}</h4>
+            <h4 id = "uppercase-storycard">{{story.total_likes}} Likes</h4> 
+
 
         </div>
     </a>

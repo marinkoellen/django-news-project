@@ -15,18 +15,21 @@
 
     <body>
         <header>
-            <div id="header-text">
-                <a id="header-link" href="{% url 'news:index' %}">
-                    <h1>She {Codes} Eats</h1>
-                </a>
-            </div>
 
-                <div class="form-group">
-                    {% for x,y in user.Cuisine_CHOICES %}
-                        <a href="{% url 'news:filtering-cat' %}?cuisine_type={{x}}"> {{x}} </a>
-                    {% endfor %}
-                </div>  
+            <div id = 'header-container'>
+                <div id="header-text">
+                    <a id="header-link" href="{% url 'news:index' %}">
+                        <h1>She {Codes} Eats</h1>
+                    </a>
+                </div>
 
+                    <div id="cuisine-types">
+                        <a class = "navbar" href="{% url 'news:index-all' %}">All </a>
+                        {% for x,y in categories %}
+                            <a class = "navbar" href="{% url 'news:filtering-cat' %}?cuisine_type={{x}}"> {{x}} </a>
+                        {% endfor %}
+                    </div>  
+                </div>
             {% include './nav.html' %}
         </header>
 
@@ -34,4 +37,10 @@
         <!-- put template data in block -->
         {% block content %} {% endblock %}
     </body>
+
+    <footer>
+        <p>Ellen Marinko © 2020 </p>
+        <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+    </footer>
+
 </html>

@@ -11,7 +11,7 @@
     <p>Favourite Cuisine: {{request.user.favourite_cuisine}}</p>
     <p>A bit about {{request.user}}: {{request.user.bio}}</p>
 
-<a href="{% url 'users:editAccount' request.user%}">Change & Update Account Details</a >
+    <a class = "editaccount" href="{% url 'users:editAccount' request.user%}">Change & Update Account Details</a >
 
 {% endif %}
 
